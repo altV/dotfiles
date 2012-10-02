@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'open-uri'
+require 'nokogiri'
+require 'pp'
+
+pp links = Nokogiri.parse(open "http://google.com/search?q=#{URI.encode ARGV.join(' ')}").
+	css('li.g').
+	map {|e| [e.text,
+		  e.css('a').map {|l| l.attributes["href"].value}.uniq.compact]}
+
+pp links.map {|group| group[1][0..0]}.flatten.
+	tap  {|links|      p `opera -newwindow 'http://google.com#{links[0]}'`}[1..-1].
+	each {|rest_links| p `opera -windowname last -newtab 'http://google.com#{rest_links}'`}
