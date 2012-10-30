@@ -3,4 +3,5 @@
 !.conkyrc
 !bin
 !bin/*
-
+!theme.lua
+!rc.lua
