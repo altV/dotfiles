@@ -5,3 +5,5 @@
 !bin/*
 !theme.lua
 !rc.lua
+!.config/
+!.config/awesome/
