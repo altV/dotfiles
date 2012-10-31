@@ -7,3 +7,6 @@
 !rc.lua
 !.config/
 !.config/awesome/
+!.config/awesome/*
+!.config/awesome/default/
+!.config/awesome/default/*
