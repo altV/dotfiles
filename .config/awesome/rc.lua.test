@@ -173,13 +173,13 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
+	    mytextclock,
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        mylayoutbox[s],
-        mytextclock,
+        mylayoutbox[s],        
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -197,6 +197,14 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({ modkey,           }, "\\",   function () awful.util.spawn("setxkbmap ru") end ),
+    awful.key({ modkey,           }, "BackSpace",   function () awful.util.spawn("setxkbmap us") end ),
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 9%+") end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 9%-") end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+--    awful.key({ }, "BackSpace",   function () awful.util.spawn("setxkbmap us") end ),
+--    awful.key({ }, "BackSpace",   function () awful.util.spawn("setxkbmap us") end ),
+--    awful.key({ }, "BackSpace",   function () awful.util.spawn("setxkbmap us") end ),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
