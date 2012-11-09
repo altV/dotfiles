@@ -1,10 +1,14 @@
 *
 !.gitignore
+
+
+!.gitconfig
+
 !.conkyrc
+
 !bin
 !bin/*
-!theme.lua
-!rc.lua
+
 !.config/
 !.config/awesome/
 !.config/awesome/*

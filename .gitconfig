@@ -1,0 +1,22 @@
+[user]
+	name = Leo
+	email = leonid.inbox@gmail.com
+[color]
+	ui = auto
+
+[alias]
+	gr  = log --all --abbrev-commit --decorate --graph --date-order  --word-diff=color --word-diff-regex='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+	st  = status
+	ci  = commit
+	br  = branch
+	co  = checkout
+	df  = diff --word-diff=color --word-diff-regex='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+	lg  = log -p
+	who = shortlog -s --
+	new = shortlog --all --since='1 weeks ago' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --reverse
+	new2 = whatchanged --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 1914x1055+1920+19
+	history-view-vpane-position = 711
+	main-window-view = HistoryView
