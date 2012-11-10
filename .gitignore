@@ -12,5 +12,15 @@
 !.config/
 !.config/awesome/
 !.config/awesome/*
-!.config/awesome/default/
-!.config/awesome/default/*
+!.config/awesome/theme/
+!.config/awesome/theme/*
+!.config/awesome/theme/tasklist/
+!.config/awesome/theme/tasklist/*
+!.config/awesome/theme/taglist/
+!.config/awesome/theme/taglist/*
+!.config/awesome/theme/titlebar/
+!.config/awesome/theme/titlebar/*
+!.config/awesome/theme/layouts/
+!.config/awesome/theme/layouts/*
+!.config/awesome/wallpapers/
+!.config/awesome/wallpapers/*
