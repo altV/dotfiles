@@ -8,7 +8,10 @@ pp links = Nokogiri.parse(open "http://google.com/search?q=#{URI.encode ARGV.joi
   map {|e| [e.text,
             e.css('a').map {|l| l.attributes["href"].value}.uniq.compact]}
 
-pp links.map {|group| group[1][0..0]}.flatten.
-  tap  {|links|      system p "opera -newwindow -nosession 'http://google.com#{links[0]}' &"}[1..-1].
-  each {|rest_links| sleep 0.1
-                     system p "opera -windowname last -backgroundtab 'http://google.com#{rest_links}' &" }
+#pp links.map {|group| group[1][0..0]}.flatten.
+#  tap  {|links|      system p "opera -newwindow -nosession 'http://google.com#{links[0]}' &"}[1..-1].
+#  each {|rest_links| sleep 0.1
+#                     system p "opera -windowname last -backgroundtab 'http://google.com#{rest_links}' &" }
+
+links.map {|group| group[1][0..0]}.flatten.map {|l| "\"http://google.com#{l}\""}.join(' ').
+  tap {|e| system p "google-chrome --new-window #{e}"}
