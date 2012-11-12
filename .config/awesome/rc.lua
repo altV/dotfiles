@@ -7,6 +7,9 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+-- Widget library
+vicious = require("vicious")
+
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -168,16 +171,38 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
+    -- MPD widget
+    mpdwidget = widget({ type = "textbox" })
+    vicious.register(mpdwidget, vicious.widgets.mpd,
+        function (widget, args)
+            if args["{state}"] == "Stop" then 
+                return " - "
+            else 
+                return args["{Artist}"]..' - '.. args["{Title}"]
+            end
+        end, 10)
+
+    -- CPU widget
+    cpuwidget = awful.widget.graph()
+    cpuwidget:set_width(50)
+    cpuwidget:set_background_color("#494B4F")
+    cpuwidget:set_color("#FF5656")
+    cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
+    vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
+
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-	    mytextclock,
+--            cpuwidget,
+    	    mytextclock,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
+	    mpdwidget,
+        cpuwidget,
         mylayoutbox[s],        
         s == 1 and mysystray or nil,
         mytasklist[s],
@@ -338,6 +363,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
+		             size_hints_honor = false,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
@@ -380,6 +406,8 @@ client.add_signal("manage", function (c, startup)
     end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.add_signal("focus", function(c) c.border_color = beautiful.border_focus
+	c.opacity = 1 end)
+client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal 
+	c.opacity = 0.7 end)
 -- }}}
