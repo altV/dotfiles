@@ -24,3 +24,7 @@
 !.config/awesome/theme/layouts/*
 !.config/awesome/wallpapers/
 !.config/awesome/wallpapers/*
+
+!.vimrc
+!.fonts
+!.fonts/**/*
