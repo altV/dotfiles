@@ -26,5 +26,9 @@
 !.config/awesome/wallpapers/*
 
 !.vimrc
+!.vim
+!.vim/*
+!.vim/**/*
+
 !.fonts
 !.fonts/**/*
